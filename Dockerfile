@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python", "scraper_rama_nombre.py"]
+CMD ["python", "prueba_5_registros.py"]
