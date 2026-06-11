@@ -116,9 +116,13 @@ options.add_argument("--disable-gpu")
 options.add_argument("--window-size=1400,900")
 options.add_argument("--disable-extensions")
 options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
-options.binary_location = "/usr/bin/chromium-browser"
+# Rutas para Docker/Railway (Debian slim)
+import shutil
+chrome_bin = shutil.which("chromium") or shutil.which("chromium-browser") or "/usr/bin/chromium"
+chromedriver_bin = shutil.which("chromedriver") or "/usr/bin/chromedriver"
+options.binary_location = chrome_bin
 
-service = Service("/usr/bin/chromedriver")
+service = Service(chromedriver_bin)
 driver  = webdriver.Chrome(service=service, options=options)
 wait    = WebDriverWait(driver, 25)
 
